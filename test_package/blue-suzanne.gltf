@@ -1,0 +1,171 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v4.1.0)"
+    },
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2901,
+            "type": "VEC3",
+            "max": [
+                1.3671870231628419,
+                0.8515625,
+                0.984375
+            ],
+            "min": [
+                -1.3671870231628419,
+                -0.8515625,
+                -0.984375
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2901,
+            "type": "VEC3",
+            "max": [
+                1.0,
+                0.9931954145431519,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -0.9947568774223328
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2901,
+            "type": "VEC2",
+            "max": [
+                0.9998559951782227,
+                0.9998559951782227
+            ],
+            "min": [
+                0.00014400000509340316,
+                0.0951489806175232
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5123,
+            "count": 2901,
+            "type": "SCALAR",
+            "max": [
+                2900.0
+            ],
+            "min": [
+                0.0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 98634,
+            "uri": "blue-suzanne.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 34812,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 34812,
+            "byteLength": 34812,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 69624,
+            "byteLength": 23208,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 92832,
+            "byteLength": 5802,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Material.001",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.009030921384692192,
+                    0.0015874990494921804,
+                    0.8000000715255737,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.9599999785423279
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Suzanne",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 3,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Suzanne",
+            "mesh": 0
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}
