@@ -18,13 +18,23 @@ class AssimpConan(ConanFile):
     generators = "cmake"
 
     settings = "os", "arch", "compiler", "build_type"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": False, "fPIC": True, "zlib:minizip": True}
+    options = {
+        "shared": [True, False],
+        "fPIC": [True, False],
+        "build_zlib": [True, False],
+    }
+    default_options = {"shared": False, "fPIC": True, "build_zlib": True}
 
     _build_subfolder = "build_subfolder"
     _source_subfolder = "source_subfolder"
 
-    requires = ("zlib/1.2.11@conan/stable",)
+    def requirements(self):
+        if not self.options.build_zlib:
+            self.requires("zlib/1.2.11@conan/stable")
+
+    def configure(self):
+        if not self.options.build_zlib:
+            self.options["zlib"].minizip = True
 
     def source(self):
         source_url = "https://github.com/assimp/assimp"
@@ -40,6 +50,7 @@ class AssimpConan(ConanFile):
         cmake = CMake(self)
         cmake.definitions["CMAKE_POSITION_INDEPENDENT_CODE"] = self.options.fPIC
         cmake.definitions["CMAKE_BUILD_SHARED_LIBS"] = self.options.shared
+        cmake.definitions["ASSIMP_BUILD_ZLIB"] = self.options.build_zlib
         cmake.configure(build_folder=self._build_subfolder)
         return cmake
 
@@ -52,5 +63,10 @@ class AssimpConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self)
+        self.cpp_info.libs = ["assimp"]
+        if not self.options.shared:
+            self.cpp_info.libs.append("IrrXML")
+            if self.options.build_zlib:
+                self.cpp_info.libs.append("zlibstatic")
+
         self.env_info.path.append(os.path.join(self.package_folder, "bin"))
