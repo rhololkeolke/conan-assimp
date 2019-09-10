@@ -1,0 +1,35 @@
+env:
+  global:
+  - CONAN_USERNAME: rhololkeolke
+  - CONAN_LOGIN_USERNAME: rhololkeolke
+  - CONAN_CHANNEL: stable
+  - CONAN_UPLOAD: https://api.bintray.com/conan/rhololkeolke/public-conan
+  - CONAN_STABLE_BRANCH_PATTERN: stable/*
+  - CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
+  - CONAN_ARCHS: x86_64
+  - CONAN_BUILD_POLICY: outdated
+  - secure: S8Pg91665dnwGd7YicfVEn2hhlsvDtlOisu0XodlxSDujMLxmcCqJ5v9rPebIcblHmF4OnHu/MBegoqVlBQwirgE4vpcoFv1RxHUjGyKNCCZq6mE886UgQwGYjNzDl7NfRMuXq9kX9zkOo0zjxTo/1eBlJbvbm/8gUI2VBBsARr1BTa9+lvXWo6K/BGtuQLQEpREWTLo8aZ3h+od+u2gB/wgdQRr+V1+f2+ldwY3/GFdH23x6B3h91GbU2sJoadgZXtGdcsOcArHwFK5rpu7mycpOWakmcm1o+FcWz2dm99wMOsR45IQDKudeeUScoSkkZU0ZWJQ2rmhMcJ6d1Tf2ug5XwI/kS36J4K5FQxmneg9Ghy1d8T3U4R4UTa3+21w3VE9wgKKa2PJIvg7qhzDRZgepR3ArYVLfN72ov/kU3OpwS41RrFNr/bOtDocDhk8Hn279Jd33NWnUyB4vW3A+d3vovfolE0kLPXD+rCC0KZoQ4X24Yzb2B0WXCOnCI/JERFJmQthq5kbnfhi96Z4uculIaH37QC1+RICjTcjgusViHuHtAlx/UaYZNN7ldkaBcBUCHRYeYw8hOYbdADtJpGNVSOpsR8FLTxZ+nQi4yduoGnpIhZcp2v1Od67+nJ7/A89Dh09THrVKe2W1mTwt2CpO26vzpzMniHi4JMCGGs=    
+linux: &linux
+  os: linux
+  dist: xenial
+  sudo: required
+  language: python
+  python: '3.7'
+  services: 
+    - docker
+matrix:
+  include:
+  - <<: *linux
+    env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8
+  - <<: *linux
+    env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9
+  - <<: *linux
+    env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7
+  - <<: *linux
+    env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/clang8
+install:
+  - chmod +x .travis/install.sh
+  - "./.travis/install.sh"
+script:
+  - chmod +x .travis/run.sh
+  - "./.travis/run.sh"
