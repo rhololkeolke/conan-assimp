@@ -52,5 +52,5 @@ class AssimpConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["assimp", "IrrXML"]
+        self.cpp_info.libs = tools.collect_libs(self)
         self.env_info.path.append(os.path.join(self.package_folder, "bin"))
