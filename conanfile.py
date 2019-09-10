@@ -63,9 +63,15 @@ class AssimpConan(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["assimp"]
+        if self.settings.build_type == "Debug":
+            self.cpp_info.libs = ["assimpd"]
+        else:
+            self.cpp_info.libs = ["assimp"]
         if not self.options.shared:
-            self.cpp_info.libs.append("IrrXML")
+            if self.settings.build_type == "Debug":
+                self.cpp_info.libs.append("IrrXMLd")
+            else:
+                self.cpp_info.libs.append("IrrXML")
             if self.options.build_zlib:
                 self.cpp_info.libs.append("zlibstatic")
 
