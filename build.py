@@ -16,9 +16,7 @@ if __name__ == "__main__":
         new_settings["compiler.libcxx"] = "libstdc++11"
         new_options = copy.copy(options)
         options["assimp:build_zlib"] = False
-        new_builds.append([settings, options, env_vars, build_requires])
         new_builds.append([new_settings, options, env_vars, build_requires])
-        new_builds.append([settings, new_options, env_vars, build_requires])
         new_builds.append([new_settings, new_options, env_vars, build_requires])
     builder.builds = new_builds
 
